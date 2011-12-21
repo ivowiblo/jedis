@@ -694,16 +694,16 @@ public class Pipeline extends Queable {
         return getResponse(BuilderFactory.STRING_LIST);
     }
 
-    public Response<List<String>> sort(String key,
+    public Response<Long> sort(String key,
             SortingParams sortingParameters, String dstkey) {
         client.sort(key, sortingParameters, dstkey);
-        return getResponse(BuilderFactory.STRING_LIST);
+        return getResponse(BuilderFactory.LONG);
     }
 
-    public Response<List<String>> sort(byte[] key,
+    public Response<Long> sort(byte[] key,
             SortingParams sortingParameters, byte[] dstkey) {
         client.sort(key, sortingParameters, dstkey);
-        return getResponse(BuilderFactory.STRING_LIST);
+        return getResponse(BuilderFactory.LONG);
     }
 
     public Response<List<String>> sort(String key, String dstkey) {
@@ -1190,5 +1190,10 @@ public class Pipeline extends Queable {
     public Response<Long> publish(byte[] channel, byte[] message) {
         client.publish(channel, message);
         return getResponse(BuilderFactory.LONG);
+    }
+    
+    public Response<String> select(int index){
+    	client.select(index);
+    	return getResponse(BuilderFactory.STRING);
     }
 }
