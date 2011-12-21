@@ -189,11 +189,14 @@ public class SortedSetCommandsTest extends JedisCommandTestBase {
         jedis.zadd("foo", 1d, "a");
         jedis.zadd("foo", 2d, "b");
 
-        long rank = jedis.zrank("foo", "a");
-        assertEquals(0, rank);
+        Long rank = jedis.zrank("foo", "a");
+        assertEquals(new Long(0), rank);
 
         rank = jedis.zrank("foo", "b");
-        assertEquals(1, rank);
+        assertEquals(new Long(1), rank);
+        
+        rank = jedis.zrank("foo", "c");
+        assertNull(rank);
 
         assertNull(jedis.zrank("car", "b"));
 
